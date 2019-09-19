@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  web:
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app:/usr/src/app/
+    ports:
+      - 8000:8000
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=5be4)=tkj77!5x!p=7)yi1w)yyfop+6b_kx3nujg!*_h*q
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=indms
+      - SQL_USER=miriad
+      - SQL_PASSWORD=cANDg2011
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DATABASE=postgres
+    depends_on:
+      - db
+  db:
+    image: postgres:11.5-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=miriad
+      - POSTGRES_PASSWORD=cANDg2011
+      - POSTGRES_DB=indms
+
+volumes:
+  postgres_data:
