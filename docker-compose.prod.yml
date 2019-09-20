@@ -20,7 +20,7 @@ services:
     build: ./nginx
     volumes:
       - static_volume:/usr/src/app/staticfiles
-      - media_volume:/usr/src/app/mediafiles
+      # - media_volume:/usr/src/app/mediafiles
     ports:
       - 1337:80
     depends_on:
@@ -29,4 +29,4 @@ services:
 volumes:
   postgres_data:
   static_volume:
-  media_volume:
+  # media_volume:
